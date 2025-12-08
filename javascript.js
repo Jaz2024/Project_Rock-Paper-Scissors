@@ -13,7 +13,7 @@ return computerChoice
 };
 
 function getHumanChoice() {
-    let humanChoice = prompt("Enter your choice?");
+    let humanChoice = prompt("Enter your choice? (Rock/Paper/Scissor)");
 
     if (humanChoice === null) {
         alert("You didn't enter anything");
