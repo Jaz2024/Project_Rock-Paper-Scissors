@@ -4,8 +4,11 @@ const rockBtn = document.querySelector("#rock");
 const paperBtn = document.querySelector("#paper");
 const scissorBtn = document.querySelector("#scissor");
 
-const text = document.querySelector("#text");
+
 const result = document.querySelector("#result");
+const score = document.querySelector("#score");
+const myChoice = document.querySelector("#mychoice");
+const compChoice = document.querySelector("#compchoice");
 
 
 rockBtn.addEventListener("click", () => playRound("rock", getComputerChoice()));
@@ -35,37 +38,76 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
-        text.textContent = `Tie  You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `It's a tie! 🤝`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;
+
+        document.body.style.color = "Orange";
     } else if (humanChoice === "rock" && computerChoice === "scissor") {
         ++humanScore;
-       text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}`;
+       result.textContent = `You win! 🎉`;
+       score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+       myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+       compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;  
+       
+       document.body.style.color = "Green";
     } else if (humanChoice === "scissor" && computerChoice === "rock") {
         ++computerScore;
-        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `You lose! 💔`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;    
+
+        document.body.style.color = "Red";
     } else if (humanChoice === "scissor" && computerChoice === "paper") {
         ++humanScore;
-        text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}` ;
+        result.textContent = `You win! 🎉`
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}` ;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;   
+        
+        document.body.style.color = "Green";
     } else if (humanChoice === "paper" && computerChoice === "scissor") {
         ++computerScore;
-        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `You lose! 💔`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`; 
+        
+        document.body.style.color = "Red";
     } else if (humanChoice === "paper" && computerChoice === "rock") {
         ++humanScore;
-        text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `You win! 🎉`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;
+        
+        document.body.style.color = "Green";
     } else if (humanChoice === "rock" && computerChoice === "paper") {
         ++computerScore;
-        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `You lose! 💔`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;
+
+        document.body.style.color = "Red";
     }
 
     if(humanScore === 5) {
-        text.textContent = `YOU WON!`;
-        result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `YOU WON! 👑`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;        
         document.body.style.backgroundColor = "Green";
         document.body.style.color = "White";
         buttonDisabled();
 
     } else if (computerScore === 5) {
-        text.textContent = `YOU LOSE!`;
-        result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+        result.textContent = `YOU LOSE! ☠️`;
+        score.textContent = `Score — You: ${humanScore} / Computer: ${computerScore}`;
+        myChoice.textContent =`You chose: ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}`;  
+        compChoice.textContent =`Computer chose: ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}`;        
         document.body.style.backgroundColor = "Red";
         document.body.style.color = "White";
         buttonDisabled();
