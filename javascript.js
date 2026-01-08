@@ -1,3 +1,19 @@
+const container = document.querySelector("#container");
+
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorBtn = document.querySelector("#scissor");
+
+const text = document.querySelector("#text");
+const result = document.querySelector("#result");
+
+
+rockBtn.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperBtn.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorBtn.addEventListener("click", () => playRound("scissor", getComputerChoice()));
+
+
+
 function getComputerChoice() {
 let computerChoice = Math.floor(Math.random() * 3);
 
@@ -12,17 +28,6 @@ if (computerChoice === 0) {
 return computerChoice
 };
 
-function getHumanChoice() {
-    let humanChoice = prompt("Enter your choice? (Rock/Paper/Scissor)");
-
-    if (humanChoice === null) {
-        alert("You didn't enter anything");
-    } else {
-        humanChoice = humanChoice.toLowerCase();
-    }
-
-    return humanChoice;
-}
 
 let humanScore = 0;
 let computerScore = 0;
@@ -30,45 +35,51 @@ let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
-        alert(`Tie  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `Tie  You: ${humanScore} | Computer: ${computerScore}`;
     } else if (humanChoice === "rock" && computerChoice === "scissor") {
         ++humanScore;
-        alert(`You win  You: ${humanScore} | Computer: ${computerScore}`);
+       text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}`;
     } else if (humanChoice === "scissor" && computerChoice === "rock") {
         ++computerScore;
-        alert(`You lose  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
     } else if (humanChoice === "scissor" && computerChoice === "paper") {
         ++humanScore;
-        alert(`You win  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}` ;
     } else if (humanChoice === "paper" && computerChoice === "scissor") {
         ++computerScore;
-        alert(`You lose  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
     } else if (humanChoice === "paper" && computerChoice === "rock") {
         ++humanScore;
-        alert(`You win  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `You win  You: ${humanScore} | Computer: ${computerScore}`;
     } else if (humanChoice === "rock" && computerChoice === "paper") {
         ++computerScore;
-        alert(`You lose  You: ${humanScore} | Computer: ${computerScore}`);
+        text.textContent = `You lose  You: ${humanScore} | Computer: ${computerScore}`;
     }
 
-}
+    if(humanScore === 5) {
+        text.textContent = `YOU WON!`;
+        result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+        document.body.style.backgroundColor = "Green";
+        document.body.style.color = "White";
 
-function playGame() {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-   playRound(humanSelection, computerSelection);
-
-}
-
-while (humanScore < 5 && computerScore < 5){
-    playGame();
-
-    if (humanScore === 5) {
-        alert(`YOU WON!!!`);
-        break;
+        buttonDisabled();
     } else if (computerScore === 5) {
-        alert(`YOU LOST!!!`)
-        break;
+        text.textContent = `YOU LOSE!`;
+        result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
+        document.body.style.backgroundColor = "Red";
+        document.body.style.color = "White";
+
+
+        buttonDisabled();
     }
+
 }
+
+
+function buttonDisabled(){
+    rockBtn.disabled = true;
+    paperBtn.disabled = true;
+    scissorBtn.disabled = true;
+}
+
+
