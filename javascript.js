@@ -61,15 +61,13 @@ function playRound(humanChoice, computerChoice) {
         result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
         document.body.style.backgroundColor = "Green";
         document.body.style.color = "White";
-
         buttonDisabled();
+
     } else if (computerScore === 5) {
         text.textContent = `YOU LOSE!`;
         result.textContent = `You: ${humanScore} | Computer: ${computerScore}`;
         document.body.style.backgroundColor = "Red";
         document.body.style.color = "White";
-
-
         buttonDisabled();
     }
 
